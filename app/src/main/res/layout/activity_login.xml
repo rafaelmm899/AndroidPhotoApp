@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/loginActivity"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/logoSoftmedia"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:visibility="visible"
+            app:srcCompat="@drawable/softmedialogo" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="36dp"
+        android:maxLines="1"
+        android:textColorHint="@color/grey_300"
+        android:textSize="13sp"
+        android:hint="@string/username_loginactivity"
+        android:background="@drawable/edittext_theme"
+         />
+
+
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:textSize="13sp"
+        android:textColorHint="@color/grey_300"
+        android:layout_marginStart="16dp"
+        android:hint="@string/password_loginactivity"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="36dp"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:inputType="textPassword"
+        android:background="@drawable/edittext_theme"
+        />
+
+    <Button
+        android:id="@+id/enterLogin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="36dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/grey_300"
+        android:onClick="onClick"
+        android:background="@drawable/button_theme"
+        android:text="@string/textButton_loginactivity" />
+
+
+</LinearLayout>

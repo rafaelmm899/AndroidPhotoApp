@@ -19,7 +19,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerCrop"
 
-            android:src="@drawable/background"
+            android:src="@drawable/nav_menu_header_bg_blue"
             app:srcCompat="@drawable/nav_menu_header_bg_blue" />
 
         <ImageView
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="70dp"
-                android:text="Laxman Marothiya"
+                android:text=""
                 android:textColor="#fff"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -67,7 +67,7 @@
                 android:layout_below="@+id/name"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="(Adhyaksh)"
+                android:text=""
                 android:textColor="#fff"
                 android:textSize="12sp" />
 
@@ -78,7 +78,8 @@
                 android:layout_margin="@dimen/fab_margin"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_menu_camera"
-                app:layout_anchorGravity="bottom|end" />
+                app:layout_anchorGravity="bottom|end"
+                android:backgroundTint="@color/grey_50"/>
 
 
         </RelativeLayout>

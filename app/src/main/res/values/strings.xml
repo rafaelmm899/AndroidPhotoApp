@@ -13,6 +13,10 @@
     <string name="errorConnectionWithServer">Error de comunicacion con el servidor, por favor intente nuevamente</string>
     <string name="usernameAndPasswordIsEmpty">Ingrese un usuario y una contraseña</string>
     <string name="Authenticating">Autenticando</string>
+    <string name="toobarTittleDefault">Notificaciones</string>
+    <string name="administrador_tipoper">ADMINISTRADOR</string>
+    <string name="administrador">ADMINISTRADOR</string>
+    <string name="errorUserObjectIsNull">Error en el servidor</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

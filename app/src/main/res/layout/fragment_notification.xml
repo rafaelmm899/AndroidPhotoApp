@@ -4,6 +4,28 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="@color/backgroundListView">
+
+    <LinearLayout
+        android:id="@+id/emptyNotification"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_do_not_disturb_alt_black_24dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:text="No hay notificaciones"/>
+
+    </LinearLayout>
+
+
+
     <ListView
         android:id="@+id/notificationListViewFragment"
         android:layout_width="fill_parent"

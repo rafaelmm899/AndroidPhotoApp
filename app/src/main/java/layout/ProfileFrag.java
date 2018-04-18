@@ -120,29 +120,25 @@ public class ProfileFrag extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        new HttpAsyncTaskProfile().execute(urlProfile);
+        if (user.getTypeUser().equals("SUPERADMIN")){
+            name.setText(R.string.administrador);
+        }else{
+            new HttpAsyncTaskProfile().execute(urlProfile);
+        }
     }
 
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.e("photo",String.valueOf(requestCode));
-        //if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
-            //if (requestCode == Activity.RESULT_OK){
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
+            if (resultCode == Activity.RESULT_OK){
                 Bitmap bitmapImg = (Bitmap) data.getExtras().get("data");
-                /*ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
-                byte[] byteArray = stream.toByteArray();
-
-                Bitmap bitmap1 = BitmapFactory.decodeByteArray(byteArray,0,byteArray.length);*/
                 profileImg.setImageBitmap(bitmapImg);
                 MainActivity main   = (MainActivity) getActivity();
                 main.img.setImageBitmap(bitmapImg);
-
-
                 ImageUploadToServerFunction(bitmapImg);
-            //}
-        //}
+            }
+        }
     }
 
     public void showTextView(User user){

@@ -23,7 +23,7 @@ public class Common {
         User user = new User();
         try{
             switch (json.getString("TYPE").trim()){
-                case "ADMIN" :
+                case "SUPERADMIN" :
                     user = new User(json.getString("USERNAME").trim(),Integer.parseInt(json.getString("ID").trim()),json.getString("NAME").trim(),json.getString("LASTNAME").trim(),json.getString("TYPE").trim(),json.getString("IMAGE"));
                     break;
                 case "Student":

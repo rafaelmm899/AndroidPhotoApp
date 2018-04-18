@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.softmedialtda.softmediaphotoapp.R;
@@ -36,6 +37,7 @@ public class NotificationFrag extends Fragment {
     String urlNotifications = DOMAIN+"notifications";
     User user = new User();
     int selectedPosition;
+    LinearLayout emptyNotifications;
 
     public static NotificationFrag newInstance(int section){
         NotificationFrag fragment = new NotificationFrag();
@@ -47,6 +49,7 @@ public class NotificationFrag extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_notification, container, false);
+        emptyNotifications = (LinearLayout) getView();
         notificationListView = (ListView) rootView.findViewById(R.id.notificationListViewFragment);
         notificationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -66,7 +69,7 @@ public class NotificationFrag extends Fragment {
             }
         });
         ColorDrawable devidrColor = new ColorDrawable(
-                this.getResources().getColor(R.color.devidrColor));
+                this.getResources().getColor(R.color.backgroundListView));
         notificationListView.setDivider(devidrColor);
         notificationListView.setDividerHeight(5);
         user = (User) getActivity().getIntent().getSerializableExtra("user");
@@ -109,12 +112,19 @@ public class NotificationFrag extends Fragment {
         protected void onPostExecute(String s) {
             if (!s.equals("")){
                 try{
-                    JSONArray response = new JSONArray(s);
-                    ArrayList<Notification> list = getListNotification(response,selectedPosition);
+                    if (getActivity() != null) {
+                        JSONArray response = new JSONArray(s);
+                        ArrayList<Notification> list = getListNotification(response, selectedPosition);
+                        if (list.size() == 0){
+                            emptyNotifications.setVisibility(View.VISIBLE);
+                            notificationListView.setVisibility(View.INVISIBLE);
+                        }else{
+                            emptyNotifications.setVisibility(View.INVISIBLE);
+                            NotificationListAdapter nla = new NotificationListAdapter(getActivity(), list);
+                            notificationListView.setAdapter(nla);
+                        }
 
-                    NotificationListAdapter nla = new NotificationListAdapter(getActivity(),list);
-                    notificationListView.setAdapter(nla);
-
+                    }
                 }catch (JSONException e) {
                     e.printStackTrace();
                 }

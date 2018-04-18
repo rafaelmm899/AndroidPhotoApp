@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void selectDrawerItem(MenuItem menuItem) {
-        Log.e("CHECKED",String.valueOf(menuItem.isChecked()));
         if (menuItem.isChecked() == false) {
             switch (menuItem.getItemId()) {
                 case R.id.showProfileComplete:

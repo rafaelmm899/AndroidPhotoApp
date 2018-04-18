@@ -40,9 +40,15 @@ public class LoginActivity extends Activity implements OnClickListener {
 
     public void userLoggedIn(JSONObject response){
         User user = convertJsonObjectToUserObject(response);
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        intent.putExtra("user",user);
-        startActivity(intent);
+        if (user.getId() == 0){
+            showMessage(getResources().getString(R.string.errorUserObjectIsNull));
+            progressDialog.hide();
+        }else{
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("user",user);
+            startActivity(intent);
+        }
+
     }
 
     private class LoginAsyncTask extends AsyncTask<String, Void, String>{
@@ -106,8 +112,8 @@ public class LoginActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         //boolean validate = isConnectedToServer(SERVER,15000);
-        usernameEditText.setText("BRACHOEMIL@GMAIL.COM");
-        passwordEditText.setText("sistemas_157916");
+        //usernameEditText.setText("BRACHOEMIL@GMAIL.COM");
+        //passwordEditText.setText("sistemas_157916");
         if (!usernameEditText.getText().toString().trim().equals("")&&!passwordEditText.getText().toString().trim().equals("")) {
             //if (validate == true) {
             switch (v.getId()) {

@@ -22,4 +22,5 @@
     <color name="white">#FFFFFF</color>
 
     <color name="transparent_bg">#2affffff</color>
+    <color name="backgroundListView">#e2e4fe</color>
 </resources>

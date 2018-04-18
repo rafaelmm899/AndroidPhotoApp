@@ -1,35 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dip">
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:descendantFocusability="beforeDescendants">
 
 
-    <TextView
-        android:id="@+id/subjectTextView"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:typeface="sans"/>
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="15dp"
+        android:background="@drawable/card_background_selector"
+        android:descendantFocusability="afterDescendants">
 
-    <TextView
-        android:id="@+id/senderTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/subjectTextView"
-        android:layout_marginTop="5dip"
-        android:textColor="#343434"
-        android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/subjectTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:typeface="sans"/>
 
-    <TextView
-        android:id="@+id/dateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/senderTextView"
-        android:layout_alignBottom="@+id/senderTextView"
-        android:layout_alignParentRight="true"
-        android:textColor="#343434"
-        android:textSize="12sp"/>
-</RelativeLayout>
+        <TextView
+            android:id="@+id/senderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subjectTextView"
+            android:layout_marginTop="5dip"
+            android:textColor="#343434"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/senderTextView"
+            android:layout_alignBottom="@+id/senderTextView"
+            android:layout_alignParentRight="true"
+            android:textColor="#343434"
+            android:textSize="12sp"/>
+
+    </RelativeLayout>
+</FrameLayout>

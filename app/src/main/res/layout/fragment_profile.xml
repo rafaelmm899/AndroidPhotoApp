@@ -19,8 +19,8 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerCrop"
 
-            android:src="@drawable/nav_menu_header_bg"
-            app:srcCompat="@drawable/nav_menu_header_bg" />
+            android:src="@drawable/background"
+            app:srcCompat="@drawable/nav_menu_header_bg_blue" />
 
         <ImageView
             android:clickable="true"
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/header_cover_image"
-            android:background="#ebca0707"
+            android:background="@drawable/background"
             android:elevation="4dp"
             android:paddingBottom="24dp">
 

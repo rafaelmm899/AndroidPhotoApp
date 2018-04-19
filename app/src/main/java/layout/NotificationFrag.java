@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.softmedialtda.softmediaphotoapp.R;
 import com.softmedialtda.softmediaphotoapp.models.Notification;
@@ -38,6 +40,8 @@ public class NotificationFrag extends Fragment {
     User user = new User();
     int selectedPosition;
     LinearLayout emptyNotifications;
+    TextView textViewNoNotification;
+    ImageView imageViewNoNotification;
 
     public static NotificationFrag newInstance(int section){
         NotificationFrag fragment = new NotificationFrag();
@@ -50,6 +54,8 @@ public class NotificationFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_notification, container, false);
         emptyNotifications = (LinearLayout) getView();
+        textViewNoNotification = (TextView) rootView.findViewById(R.id.textViewNoNotification);
+        imageViewNoNotification = (ImageView) rootView.findViewById(R.id.imageViewNoNotification);
         notificationListView = (ListView) rootView.findViewById(R.id.notificationListViewFragment);
         notificationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -80,7 +86,6 @@ public class NotificationFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         selectedPosition = getArguments() != null ? getArguments().getInt("num") : 1;
-
     }
 
     @Override
@@ -116,14 +121,16 @@ public class NotificationFrag extends Fragment {
                         JSONArray response = new JSONArray(s);
                         ArrayList<Notification> list = getListNotification(response, selectedPosition);
                         if (list.size() == 0){
-                            emptyNotifications.setVisibility(View.VISIBLE);
-                            notificationListView.setVisibility(View.INVISIBLE);
+
+                            textViewNoNotification.setText(R.string.listViewNotificationIsEmpty);
+                            imageViewNoNotification.setImageResource(R.drawable.ic_do_not_disturb_alt_black_24dp);
+                            imageViewNoNotification.setPadding(1,150,1,0);
+                            notificationListView.setEmptyView(emptyNotifications);
                         }else{
-                            emptyNotifications.setVisibility(View.INVISIBLE);
                             NotificationListAdapter nla = new NotificationListAdapter(getActivity(), list);
                             notificationListView.setAdapter(nla);
-                        }
 
+                        }
                     }
                 }catch (JSONException e) {
                     e.printStackTrace();

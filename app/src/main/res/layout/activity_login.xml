@@ -32,12 +32,11 @@
         android:layout_marginTop="36dp"
         android:maxLines="1"
         android:textColorHint="@color/grey_300"
+        android:textColor="@color/grey_300"
         android:textSize="13sp"
         android:hint="@string/username_loginactivity"
         android:background="@drawable/edittext_theme"
          />
-
-
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -48,6 +47,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="36dp"
         android:layout_height="50dp"
+        android:textColor="@color/grey_300"
         android:layout_width="match_parent"
         android:inputType="textPassword"
         android:background="@drawable/edittext_theme"

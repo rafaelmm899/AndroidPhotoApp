@@ -79,7 +79,7 @@
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_menu_camera"
                 app:layout_anchorGravity="bottom|end"
-                android:backgroundTint="@color/grey_50"/>
+                app:backgroundTint="@color/grey_50"/>
 
 
         </RelativeLayout>

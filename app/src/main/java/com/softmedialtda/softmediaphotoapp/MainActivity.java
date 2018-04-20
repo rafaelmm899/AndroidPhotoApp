@@ -37,6 +37,7 @@ import java.net.URL;
 import layout.ListNotificationFrag;
 import layout.LogOutFrag;
 import layout.ProfileFrag;
+import layout.SearchFrag;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void selectDrawerItem(MenuItem menuItem) {
+        Bundle bundle = new Bundle();
         if (menuItem.isChecked() == false) {
             switch (menuItem.getItemId()) {
                 case R.id.showProfileComplete:
@@ -101,6 +103,18 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.notiList:
                     getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new ListNotificationFrag()).commit();
+                    break;
+                case R.id.searchStudent:
+                    bundle.putString("typeSearch", "Student");
+                    SearchFrag searchFrag =  new SearchFrag();
+                    searchFrag.setArguments(bundle);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.flContent, searchFrag).commit();
+                    break;
+                case R.id.searchFuncionary:
+                    bundle.putString("typeSearch", "Funcionary");
+                    SearchFrag searchFragement =  new SearchFrag();
+                    searchFragement.setArguments(bundle);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.flContent, searchFragement).commit();
                     break;
                 case R.id.logout:
                     Intent myIntent = new Intent(this, LoginActivity.class);

@@ -112,8 +112,8 @@ public class LoginActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         //boolean validate = isConnectedToServer(SERVER,15000);
-        //usernameEditText.setText("BRACHOEMIL@GMAIL.COM");
-        //passwordEditText.setText("sistemas_157916");
+        usernameEditText.setText("BRACHOEMIL@GMAIL.COM");
+        passwordEditText.setText("sistemas_157916");
         if (!usernameEditText.getText().toString().trim().equals("")&&!passwordEditText.getText().toString().trim().equals("")) {
             //if (validate == true) {
             switch (v.getId()) {

@@ -32,5 +32,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'com.google.code.gson:gson:2.8.1'
     compile 'com.mikhaellopez:circularprogressbar:1.1.1'
+    compile 'com.google.android.gms:play-services-vision:10.0.1'
+    compile 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+    compile 'com.google.zxing:core:3.2.1'
     testCompile 'junit:junit:4.12'
 }

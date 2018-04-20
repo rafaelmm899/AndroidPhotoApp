@@ -29,5 +29,13 @@
     <string name="showProfileComple_activityNavProfileDrawer">Perfil</string>
     <string name="logout_activityNavProfileDrawer">Cerrar Sesion</string>
     <string name="notification_activityNavProfileDrawer">Notificaciones</string>
+    <string name="searchStudents_activityNavProfileDrawer">Buscar Estudiantes</string>
+    <string name="searchFuncionary_activityNavProfileDrawer">Buscar Funcionarios</string>
     <string name="listViewNotificationIsEmpty">No tienes notificaciones</string>
+    <string name="buttonScanQR">Scanear QR</string>
+    <string name="buttonSearch">Buscar</string>
+    <string name="documentNumberTextView">Numero de documento</string>
+    <string name="searching">Buscando Informacion</string>
+    <string name="closeDialog">Cerrar</string>
+    <string name="documentNumberEmpty">Debe especificar un Numero de documento o Escanear un codigo QR</string>
 </resources>

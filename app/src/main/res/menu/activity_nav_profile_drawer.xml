@@ -13,6 +13,16 @@
             android:title="@string/notification_activityNavProfileDrawer" />
 
         <item
+            android:id="@+id/searchStudent"
+            android:icon="@drawable/ic_contacts_black_24dp"
+            android:title="@string/searchStudents_activityNavProfileDrawer" />
+
+        <item
+            android:id="@+id/searchFuncionary"
+            android:icon="@drawable/ic_contacts_black_24dp"
+            android:title="@string/searchFuncionary_activityNavProfileDrawer" />
+
+        <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_logout"
             android:title="@string/logout_activityNavProfileDrawer" />

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.softmedialtda.softmediaphotoapp">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -22,18 +23,35 @@
         android:roundIcon="@mipmap/ic_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:label="@string/toobarTittleDefault" android:configChanges="orientation" android:screenOrientation="portrait" />
-        <activity android:name=".LoginActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:label="@string/toobarTittleDefault"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NotificationActivity"
-            android:theme="@style/AppTheme" android:configChanges="orientation" android:screenOrientation="portrait" />
-        <activity android:name=".ProfileActivity" android:configChanges="orientation" android:screenOrientation="portrait" />
-        <activity android:name=".SplashActivity" android:configChanges="orientation" android:screenOrientation="portrait">
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ProfileActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".util.ScanActivity"></activity>
     </application>
 
 </manifest>

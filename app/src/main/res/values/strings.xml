@@ -38,4 +38,7 @@
     <string name="searching">Buscando Informacion</string>
     <string name="closeDialog">Cerrar</string>
     <string name="documentNumberEmpty">Debe especificar un Numero de documento o Escanear un codigo QR</string>
+    <string name="noDataFound">No se encontraron datos, por favor verifique el numero de documento</string>
+    <string name="QRNoFound">El dispositivo no posee lector QR</string>
+    <string name="permissionNeeded">Permiso denegado</string>
 </resources>

@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
         setupDrawerContent(nvDrawer);
 
+        hideItemsByTypeUser(user);
+
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
         tx.replace(R.id.flContent, new ListNotificationFrag());
         tx.commit();
@@ -111,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.flContent, searchFrag).commit();
                     break;
                 case R.id.searchFuncionary:
-                    bundle.putString("typeSearch", "Funcionary");
+                    bundle.putString("typeSearch", "Functionary");
                     SearchFrag searchFragement =  new SearchFrag();
                     searchFragement.setArguments(bundle);
                     getSupportFragmentManager().beginTransaction().replace(R.id.flContent, searchFragement).commit();
@@ -152,5 +154,20 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void hideItemsByTypeUser(User user){
+        Menu navMenu = nvDrawer.getMenu();
+        switch (user.getTypeUser()){
+            case "Student" :
+                navMenu.findItem(R.id.searchStudent).setVisible(false);
+                navMenu.findItem(R.id.searchFuncionary).setVisible(false);
+                break;
+            case "Attendant" :
+                navMenu.findItem(R.id.searchStudent).setVisible(false);
+                navMenu.findItem(R.id.searchFuncionary).setVisible(false);
+                break;
+
+        }
     }
 }

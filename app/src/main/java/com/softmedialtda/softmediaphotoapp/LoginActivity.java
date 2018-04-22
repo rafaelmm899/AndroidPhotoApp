@@ -56,8 +56,6 @@ public class LoginActivity extends Activity implements OnClickListener {
         protected String doInBackground(String... params) {
             JSONObject paramaters = new JSONObject();
             try {
-                //paramaters.accumulate("username", "BRACHOEMIL@GMAIL.COM"); // TODO: 8/4/2018
-                //paramaters.accumulate("password", "sistemas_157916");
                 paramaters.accumulate("username", username);
                 paramaters.accumulate("password", password);
             }catch (JSONException e) {
@@ -90,9 +88,11 @@ public class LoginActivity extends Activity implements OnClickListener {
                                 break;
                             case "3":
                                 showMessage(getResources().getString(R.string.invalidUsernameOrPassword));
+                                progressDialog.hide();
                                 break;
                             case "4":
                                 showMessage(getResources().getString(R.string.requiredFields));
+                                progressDialog.hide();
                                 break;
                         }
                     }else{
@@ -118,7 +118,7 @@ public class LoginActivity extends Activity implements OnClickListener {
             //if (validate == true) {
             switch (v.getId()) {
                 case R.id.enterLogin:
-                    username = usernameEditText.getText().toString();
+                    username = usernameEditText.getText().toString().toUpperCase();
                     password = passwordEditText.getText().toString();
                     new LoginAsyncTask().execute(url);
                     break;

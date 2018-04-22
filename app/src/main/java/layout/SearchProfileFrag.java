@@ -3,18 +3,22 @@ package layout;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.softmedialtda.softmediaphotoapp.MainActivity;
 import com.softmedialtda.softmediaphotoapp.R;
@@ -55,6 +59,7 @@ public class SearchProfileFrag extends Fragment {
     TextView textView16; //label grupo
     ImageView profileImg;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
+    private final int CAMERA_RESULT = 101;
     String urlUploadImage = DOMAIN+"img";
 
     String dNumber; //numero de documento tipo string
@@ -63,7 +68,6 @@ public class SearchProfileFrag extends Fragment {
     public SearchProfileFrag() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -113,8 +117,15 @@ public class SearchProfileFrag extends Fragment {
         captureImageFromCamera.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                }else{
+                    if(shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA)){
+                        Toast.makeText(getActivity().getApplicationContext(), R.string.permissionNeeded, Toast.LENGTH_LONG).show();
+                    }
+                    requestPermissions(new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, CAMERA_RESULT);
+                }
             }
         });
 
@@ -230,6 +241,22 @@ public class SearchProfileFrag extends Fragment {
         AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
 
         AsyncTaskUploadClassOBJ.execute();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == CAMERA_RESULT){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            }
+            else{
+                Toast.makeText(getActivity().getApplicationContext(), R.string.permissionNeeded, Toast.LENGTH_LONG).show();
+            }
+        }
+        else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
 }

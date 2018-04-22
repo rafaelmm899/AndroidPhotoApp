@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background"
     tools:context="layout.SearchFrag">
 
     <RelativeLayout
@@ -12,38 +14,51 @@
 
         <EditText
             android:id="@+id/editTextDocumentNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/buttonScan"
-            android:layout_alignParentTop="true"
+            android:textColorHint="@color/grey_300"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="36dp"
+            android:textColor="@color/grey_300"
+            android:background="@drawable/edittext_theme"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textSize="20sp"
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="@string/documentNumberTextView" />
-
-        <Button
-            android:id="@+id/buttonScan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:drawableTop="@drawable/ic_scan"
-            android:text="@string/buttonScanQR" />
 
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:layout_marginTop="120dp">
 
         <Button
-            android:layout_marginTop="60dp"
+            android:id="@+id/buttonScan"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:drawableTop="@drawable/ic_scan"
+            android:background="@drawable/button_theme"
+            android:textColor="@color/grey_300"
+            android:text="@string/buttonScanQR" />
+            />
+
+        <Button
             android:id="@+id/buttonSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_toRightOf="@+id/buttonScan"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:text="@string/buttonSearch"
             android:drawableTop="@drawable/ic_search_black_24dp"
-            />
+            android:textColor="@color/grey_300"
+            android:background="@drawable/button_theme" />
     </LinearLayout>
 
 </FrameLayout>

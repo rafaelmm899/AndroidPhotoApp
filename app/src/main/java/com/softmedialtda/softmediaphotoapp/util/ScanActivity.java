@@ -7,7 +7,10 @@ import android.content.pm.PackageManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.SparseArray;
+import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Toast;
@@ -16,15 +19,20 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.softmedialtda.softmediaphotoapp.MainActivity;
 import com.softmedialtda.softmediaphotoapp.R;
+import com.softmedialtda.softmediaphotoapp.models.User;
 
 import java.io.IOException;
+
+import layout.SearchFrag;
 
 public class ScanActivity extends AppCompatActivity {
     SurfaceView cameraView;
     BarcodeDetector barcode;
     CameraSource cameraSource;
     SurfaceHolder holder;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +42,17 @@ public class ScanActivity extends AppCompatActivity {
         cameraView.setZOrderMediaOverlay(true);
         holder = cameraView.getHolder();
 
+        user = (User) getIntent().getSerializableExtra("user");
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarScanView);
+        setSupportActionBar(toolbar);
+
         barcode = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE)
                 .build();
 
         if(!barcode.isOperational()){
-            Toast.makeText(getApplicationContext(), "El dispositivo no posee lector QR", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.QRNoFound, Toast.LENGTH_LONG).show();
             this.finish();
         }
         cameraSource = new CameraSource.Builder(this, barcode)
@@ -97,5 +110,16 @@ public class ScanActivity extends AppCompatActivity {
                 }
             }
         });
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+        myIntent.putExtra("user",user);
+        startActivity(myIntent);
+        return true;
+
     }
 }

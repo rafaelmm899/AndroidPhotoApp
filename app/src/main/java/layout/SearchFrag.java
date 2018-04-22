@@ -55,6 +55,7 @@ public class SearchFrag extends Fragment implements OnClickListener {
         editTextDocumentNumber = (EditText) rootView.findViewById(R.id.editTextDocumentNumber);
         Button buttonSearch = (Button) rootView.findViewById(R.id.buttonSearch);
         Button buttonQr = (Button) rootView.findViewById(R.id.buttonScan);
+        user = (User) getActivity().getIntent().getSerializableExtra("user");
         buttonSearch.setOnClickListener(this);
         buttonQr.setOnClickListener(this);
         return rootView;
@@ -81,6 +82,7 @@ public class SearchFrag extends Fragment implements OnClickListener {
                 break;
             case R.id.buttonScan:
                 Intent myIntent = new Intent(getActivity(), ScanActivity.class);
+                myIntent.putExtra("user",user);
                 startActivityForResult(myIntent, REQUEST_CODE);
                 break;
         }
@@ -97,8 +99,7 @@ public class SearchFrag extends Fragment implements OnClickListener {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog = new ProgressDialog(getActivity(),
-                    R.style.AppTheme_Dark_Dialog);
+            progressDialog = new ProgressDialog(getActivity(), R.style.AppTheme_Dark_Dialog);
             progressDialog.setIndeterminate(true);
             progressDialog.setMessage(getResources().getString(R.string.searching));
             progressDialog.show();
@@ -107,13 +108,25 @@ public class SearchFrag extends Fragment implements OnClickListener {
         @Override
         protected void onPostExecute(String s) {
             if (!s.equals("")) {
-                Bundle bundle = new Bundle();
-                bundle.putString("response", s);
-                bundle.putString("typeSearch", typeSearch);
-                SearchProfileFrag searchFragement =  new SearchProfileFrag();
-                searchFragement.setArguments(bundle);
-                getFragmentManager().beginTransaction().replace(R.id.flContent, searchFragement).commit();
-                progressDialog.hide();
+                if (checkData(s) == true){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("response", s);
+                    bundle.putString("typeSearch", typeSearch);
+                    SearchProfileFrag searchFragement =  new SearchProfileFrag();
+                    searchFragement.setArguments(bundle);
+                    getFragmentManager().beginTransaction().replace(R.id.flContent, searchFragement).commit();
+                    progressDialog.hide();
+                }else{
+                    progressDialog.hide();
+                    final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                    alert.setMessage(R.string.noDataFound).setPositiveButton(R.string.closeDialog, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.show();
+                }
             }
         }
 
@@ -128,6 +141,18 @@ public class SearchFrag extends Fragment implements OnClickListener {
             }
             return sendPost(urlSearch,paramaters);
         }
+    }
+
+    public boolean checkData(String data){
+        try{
+            JSONArray jsonArray = new JSONArray(data);
+            if (jsonArray.length() == 0){
+                return false;
+            }
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
 }

@@ -125,11 +125,15 @@ public class ProfileFrag extends Fragment {
         });
 
         user = (User) getActivity().getIntent().getSerializableExtra("user");
-        showTextView(user);
+        showTextView(user, captureImageFromCamera);
         if (!user.getImageProfile().equals("")) {
             byte[] decodedString = Base64.decode(user.getImageProfile(), Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             profileImg.setImageBitmap(decodedByte);
+        }
+
+        if (user.getTypeUser().equals("SUPERADMIN")){
+            captureImageFromCamera.hide();
         }
 
         return rootView;
@@ -140,6 +144,7 @@ public class ProfileFrag extends Fragment {
         super.onActivityCreated(savedInstanceState);
         if (user.getTypeUser().equals("SUPERADMIN")){
             name.setText(R.string.administrador);
+
         }else{
             new HttpAsyncTaskProfile().execute(urlProfile);
         }
@@ -159,7 +164,7 @@ public class ProfileFrag extends Fragment {
         }
     }
 
-    public void showTextView(User user){
+    public void showTextView(User user, FloatingActionButton floatingActionButton){
         switch (user.getTypeUser()){
             case "Functionary" :
                 textView10.setVisibility(TextView.VISIBLE);
@@ -180,12 +185,14 @@ public class ProfileFrag extends Fragment {
                 dayTrip.setVisibility(TextView.VISIBLE);
                 grade.setVisibility(TextView.VISIBLE);
                 group.setVisibility(TextView.VISIBLE);
+                floatingActionButton.hide();
                 break;
             case "Attendant" :
                 textView25.setVisibility(TextView.VISIBLE);
                 textView10.setVisibility(TextView.VISIBLE);
                 relation.setVisibility(TextView.VISIBLE);
                 documentNumber.setVisibility(TextView.VISIBLE);
+                floatingActionButton.hide();
                 break;
         }
     }

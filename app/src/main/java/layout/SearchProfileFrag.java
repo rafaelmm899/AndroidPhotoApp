@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -151,6 +152,11 @@ public class SearchProfileFrag extends Fragment {
                     name.setText(data.getString("NOMBRE1").trim() + " " + data.getString("NOMBRE2").trim() + " " + data.getString("APELLIDO1").trim() + " " + data.getString("APELLIDO2").trim());
                     documentNumber.setText(data.getString("NO_DOCUMENTO").trim());
                     appointment.setText(data.getString("DOMINIO").trim());
+                    if (!data.getString("image").trim().equals("")){
+                        byte[] decodedString = Base64.decode(data.getString("image").trim(), Base64.DEFAULT);
+                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        profileImg.setImageBitmap(decodedByte);
+                    }
                     break;
 
                 case "Student":
@@ -162,6 +168,11 @@ public class SearchProfileFrag extends Fragment {
                     dayTrip.setText(data.getString("JORNADA").trim());
                     grade.setText(data.getString("NOM_GRADO").trim());
                     group.setText(data.getString("NOMBREGRUPO").trim());
+                    if (!data.getString("image").trim().equals("")){
+                        byte[] decodedString = Base64.decode(data.getString("image").trim(), Base64.DEFAULT);
+                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        profileImg.setImageBitmap(decodedByte);
+                    }
                     break;
 
                 case "Attendant":
